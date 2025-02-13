@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Div 3D com Inclinação</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.container {
+    perspective: 1000px; /* Criando uma perspectiva 3D */
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: #3498db;
+    transform-style: preserve-3d; /* Para preservar a transformação 3D */
+    transition: transform 0.1s ease-out;
+}
+
+    </style>
+</head>
+<script>
+document.addEventListener('mousemove', function(event) {
+    const box = document.querySelector('.box');
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Pega a posição do mouse
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+
+    // Calcula os valores de rotação baseados na posição do mouse
+    const rotateX = ((mouseY / height) - 0.5) * -20; // Ajuste o "20" para mais ou menos inclinação
+    const rotateY = ((mouseX / width) - 0.5) * 20; // Ajuste o "20" para mais ou menos inclinação
+
+    // Aplica as transformações 3D
+    box.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+</script>
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
